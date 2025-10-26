@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Request Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-header h2 {
+            color: #333;
+            font-weight: 600;
+        }
+        .form-control, .form-select {
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+        }
+        textarea.form-control {
+            height: 120px;
+            resize: none;
+        }
+        .btn-submit {
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 5px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #3a5bbf;
+            transform: translateY(-2px);
+        }
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #4e73df;
+        }
+        .upload-icon {
+            font-size: 40px;
+            color: #4e73df;
+            margin-bottom: 10px;
+        }
+        .file-info {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+        .phone-input {
+            display: flex;
+        }
+        .phone-input select {
+            width: 120px;
+            margin-right: 10px;
+        }
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4e73df;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Service Type</h2>
+                    </div>
+                    
+                    <form id="serviceRequestForm" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <h4>Social Media Management</h4>
+                            <p class="text-muted">Describe your project/service needs. Your input helps us understand serve you better</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="serviceDescription" class="form-label">Service Description</label>
+                            <textarea class="form-control" id="serviceDescription" rows="3" required>We are a Real Estate Company based in UAE. We need to launch new branch in East Africa so we need an online marketing campaign management system.</textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Upload File</label>
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <h5>Drag & Drop your file here</h5>
+                                <p class="text-muted">or click to browse</p>
+                                <input type="file" id="fileUpload" style="display: none;">
+                                <p id="fileInfo" class="file-info">No file selected</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="phoneNumber" class="form-label required-field">Phone number</label>
+                                <div class="phone-input">
+                                    <select class="form-select" id="countryCode">
+                                        <option value="+1">+1 (USA)</option>
+                                        <option value="+971">+971 (UAE)</option>
+                                        <option value="+255">+255 (Tanzania)</option>
+                                        <option value="+254">+254 (Kenya)</option>
+                                        <option value="+256">+256 (Uganda)</option>
+                                    </select>
+                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter phone number" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="companyName" class="form-label required-field">Company name</label>
+                                <input type="text" class="form-control" id="companyName" placeholder="Enter company name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="companyAddress" class="form-label required-field">Company address</label>
+                                <input type="text" class="form-control" id="companyAddress" placeholder="Enter company address" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="hearAboutUs" class="form-label required-field">How did you hear about us?</label>
+                                <select class="form-select" id="hearAboutUs" required>
+                                    <option value="" selected disabled>Select an option</option>
+                                    <option value="Google">Google Search</option>
+                                    <option value="Social Media">Social Media</option>
+                                    <option value="Referral">Referral</option>
+                                    <option value="Advertisement">Advertisement</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="senderEmail" class="form-label required-field">Sender email</label>
+                            <input type="email" class="form-control" id="senderEmail" placeholder="example@gmail.com" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fas fa-paper-plane me-2"></i> REQUEST QUOTATION
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Success!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your request has been submitted successfully. We'll get back to you soon!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Error!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="errorMessage">Failed to send the request. Please try again later.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        // Initialize EmailJS with your user ID
+        (function() {
+            emailjs.init('oYslExplFOh742GaU');
+            console.log('EmailJS initialized successfully');
+        })();
+        
+        // File upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileUpload');
+        const fileInfo = document.getElementById('fileInfo');
+        
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                fileInfo.textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+            } else {
+                fileInfo.textContent = 'No file selected';
+            }
+        });
+        
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#4e73df';
+            uploadArea.style.backgroundColor = 'rgba(78, 115, 223, 0.1)';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = 'transparent';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                const file = e.dataTransfer.files[0];
+                fileInfo.textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+            }
+        });
+        
+        // Form submission with enhanced error handling
+        document.getElementById('serviceRequestForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Show loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+            
+            try {
+                // Get form values
+                const formData = {
+                    service_description: document.getElementById('serviceDescription').value,
+                    phone_number: `${document.getElementById('countryCode').value} ${document.getElementById('phoneNumber').value}`,
+                    company_name: document.getElementById('companyName').value,
+                    company_address: document.getElementById('companyAddress').value,
+                    hear_about_us: document.getElementById('hearAboutUs').value,
+                    sender_email: document.getElementById('senderEmail').value,
+                    message: "New service request submission",
+                    date: new Date().toLocaleString()
+                };
+                
+                console.log('Sending form data:', formData);
+                
+                // Send email using EmailJS
+                const response = await emailjs.send(
+                    'service_x572ipr', 
+                    'template_h2unw5g', 
+                    formData
+                );
+                
+                console.log('EmailJS response:', response);
+                
+                if (response.status === 200) {
+                    // Show success modal
+                    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+                    
+                    // Reset form
+                    document.getElementById('serviceRequestForm').reset();
+                    document.getElementById('fileInfo').textContent = 'No file selected';
+                } else {
+                    throw new Error(`Unexpected response status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error sending email:', error);
+                
+                // Show detailed error message
+                const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                document.getElementById('errorMessage').textContent = 
+                    `Error: ${error.message || 'Failed to send request. Please check console for details.'}`;
+                errorModal.show();
+            } finally {
+                // Hide loading overlay
+                loadingOverlay.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

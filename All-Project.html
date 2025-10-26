@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tale Haus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Start: General Body Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        /* End: General Body Styles */
+
+
+        /* Start: Header Section Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 6%;
+            background-color: #EAEAEA;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative; /* For menu icon positioning */
+            height: 90px;
+        }
+
+        .divider {
+            height: 40px; /* adjust as needed */
+            width: 1px;
+            background-color: black;
+            margin: 30px 30px;
+            padding: 0px;
+            margin-bottom: 50px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img { /* Styles for the logo image */
+            height: auto;
+            width: 170px;
+            display: block; /* Helps remove unwanted space below the image */
+            padding-left: 50px;
+            margin-bottom: 20px;
+        }
+        /* End: Header Section Styles */
+
+        /* Start: Header Center Info Styles */
+        .header-center-info {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        /* End: Header Center Info Styles */
+
+        /* Start: Contact Button Styles */
+        .contact-button {
+            background-color: #2a7f80;
+            color: #fff;
+            padding: 10px 10px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+            margin-right: 50px;
+        }
+
+        .contact-button:hover {
+            background-color: #216a6b;
+        }
+        /* End: Contact Button Styles */
+
+        /* Start: Hamburger Menu Icon Styles */
+        .menu-toggle {
+            display: none; /* Hidden by default (desktop) */
+            font-size: 28px;
+            color: #333;
+            cursor: pointer;
+            position: absolute; /* Position to the top right of the header */
+            right: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 21; /* Ensure it's above the navbar toggle */
+        }
+        /* End: Hamburger Menu Icon Styles */
+
+        /* Start: Main Content Wrapper Styles */
+        .main-content {
+            padding: 0px 10%;
+        }
+        /* End: Main Content Wrapper Styles */
+
+        /* Start: Hero Section Styles */
+        .hero-section {
+            background-image: url('img/TheTaleHaus-6553 copy.JPG');
+            background-size: cover;
+            background-position: center;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+   /* Start: Hero Content Styles */
+        .hero-content {
+            width: 100%;
+            max-width: 900px;
+            
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 350;
+            font-family: Austena;
+        }
+
+        .hero-content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: Montserrat;
+        }
+
+        .hero-button {
+            background-color: #2a7f80;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background-color: #216a6b;
+        }
+        /* End: Hero Content Styles */
+        /* End: Hero Section Styles */
+
+        /* Start: Navbar Styles */
+        .navbar {
+            background-color: rgba(6, 124, 126, 0.7);
+            padding: 15px 0;
+            border-radius: 30px;
+            position: absolute;
+            top: 96px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 20;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px); /* for Safari support */
+            transition: top 0.4s ease-in-out, background-color 0.4s ease-in-out; /* Ongeza hii kwa ajili ya mabadiliko laini */
+        }
+        
+        /* CLASS MPYA KWA AJILI YA NAVBAR ILIYOKWAMA JUU */
+        .navbar-fixed {
+            position: fixed;
+            top: 15px; /* Umbali kutoka juu ya skrini */
+            background-color: rgba(6, 124, 126, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 30px 30px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .navbar ul li a:hover {
+            color: #d1eff0;
+        }
+        /* End: Navbar Styles */
+
+
+
+        /* Start: Latest Project Section Styles */
+        .latest-project-section {
+            padding: 20px 8%;
+            text-align: left;
+            margin-left: 27px;
+            margin-right: 27px;
+        }
+
+        .project-banner-container {
+            display: flex; /* Changed to flex to align content */
+            flex-direction: column; /* Stack text and button vertically */
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 200px;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            color: #fff;
+            background-image: url('img/TheTaleHaus-19.JPG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center; /* Center text within the banner */
+        }
+
+        .project-banner-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* Adjusted to column for stacked text and button */
+            justify-content: center;
+            align-items: center;
+            padding: 20px; /* Added padding for content */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .project-banner-text {
+            font-size: 2em;
+            line-height: 1.2;
+            color: #121010;
+
+            margin-bottom: 10px; /* Space between text and button */
+        }
+
+        .project-banner-text h2 {
+            margin: 0;
+            font-size: 0.9em; /* Adjusted font size for "LATEST PROJECT" */
+            color: #2a7f80;
+        }
+
+        .project-banner-text p {
+            margin: 5px 0 0;
+            font-size: 0.4em; /* Adjusted font size for description */
+            color: #2a7f80;
+        }
+
+        .view-button-container {
+            position: relative; /* Changed to relative for flow within flexbox */
+        }
+
+        .view-button {
+            background-color: rgba(42, 127, 128, 0.9);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            white-space: nowrap;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .view-button:hover {
+            background-color: #216a6b;
+            transform: scale(1.05);
+        }
+        /* End: Latest Project Section Styles */
+
+        /* Start: Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .navbar {
+                width: 95%;
+            }
+
+            .hero-content h1 {
+                font-size: 3em;
+            }
+
+            .hero-section {
+                height: 400px;
+            }
+
+            .project-banner-text {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+                padding-right: 2%; /* Adjust padding for menu icon */
+            }
+
+            .header-center-info {
+                order: 2;
+                margin-bottom: 10px;
+            }
+
+            .contact-button {
+                order: 3;
+            }
+            .logo {
+                order: 1;
+            }
+            .logo img { /* Responsive adjustment for logo image */
+                height: 40px; /* Smaller logo on mobile */
+            }
+
+            /* Show hamburger menu */
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                /* Hide navbar by default on mobile */
+                display: none;
+                flex-direction: column;
+                position: fixed; /* Keep navbar above everything */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(42, 127, 128, 0.95); /* Full overlay */
+                border-radius: 0;
+                padding: 100px 0 20px 0; /* Top padding to clear header */
+                justify-content: flex-start;
+                align-items: center;
+                transition: transform 0.3s ease-in-out;
+                transform: translateX(100%); /* Hide off-screen */
+                box-shadow: none;
+                overflow-y: auto; /* Scrollable if content is long */
+                max-width: none; /* Remove max-width */
+            }
+
+            .navbar.open {
+                transform: translateX(0); /* Show navbar */
+                display: flex; /* Ensure it's displayed as flexbox */
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar ul li {
+                margin: 15px 0;
+            }
+
+            .navbar ul li a {
+                font-size: 24px;
+                padding: 10px 0;
+                display: block; /* Make link a block element to take full width */
+            }
+
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-content p {
+                font-size: 1em;
+            }
+
+            .hero-button {
+                display: none;
+            }
+
+            .hero-section {
+                height: 350px;
+            }
+
+            .project-banner-container {
+                height: 250px;
+            }
+
+            .project-banner-content {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .view-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+
+            .project-banner-text {
+                font-size: 1.5em; /* Adjusted for smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                height: auto;
+                padding: 15px 20px;
+        }
+
+            .logo img {
+                padding-left: 0;
+                margin-bottom: 10px;
+                width: 140px; /* Punguza ukubwa kwenye simu */
+        }
+
+            .divider {
+               display: none; /* Optional: ficha divider kwenye simu */
+        }
+        }
+
+            .hero-content h1 {
+                font-size: 2em;
+            }
+
+            .hero-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .hero-section {
+                height: 300px;
+            }
+
+            .project-banner-container {
+                height: 200px;
+            }
+
+            .project-banner-text {
+                font-size: 1.2em; /* Further adjusted for smaller screens */
+            }
+
+            .project-banner-text h2 {
+                font-size: 1.2em;
+            }
+
+            .project-banner-text p {
+                font-size: 0.8em;
+            }
+        /* End: Responsive Adjustments */
+
+        /* Start: Project Index Section Styles */
+        .project-index-section {
+            padding: 40px 5%;
+            text-align: left;
+            background-color: #fff;
+            border-radius: 50px;
+            margin-top: 30px;
+        }
+
+            .project-index-text {
+            font-size: 0.9em;
+            line-height: 1.2;
+            color: #121010;
+            margin-bottom: 10px; /* Space between text and button */
+            margin-left: 70px;
+        }
+
+        .project-index-text h2 {
+            margin: 0;
+            font-size: 0.9em; /* Adjusted font size for "LATEST PROJECT" */
+            color: #2a7f80;
+        }
+
+        .project-index-text p {
+            margin: 5px 0 0;
+            font-size: 0.4em; /* Adjusted font size for description */
+            color: #2a7f80;
+        }
+
+        .project-index-section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #2a7f80;
+        }
+
+        .project-index-section p {
+            font-size: 1em;
+            color: #2a7f80;
+            margin-bottom: 0px;
+        }
+
+        .project-table {
+            width: 100%;
+            max-width: 790px;
+            margin: 0 auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            padding: 10px 0;
+            color: #2a7f80;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+            text-align: left;
+        }
+
+        .table-header span:first-child {
+            padding-left: 10px;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            align-items: center;
+        }
+
+        .table-row > div {
+            height: 30px;
+            background-color: #80cbc4;
+            border-radius: 5px;
+        }
+
+        .table-row > div:first-child {
+            width: 40px;
+            margin-left: 10px;
+        }
+
+        .view-all-projects-button-wrapper {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .view-all-button {
+            display: inline-block;
+            background-color: #fff;
+            color: #2a7f80;
+            padding: 10px 25px;
+            border: 2px solid #2a7f80;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .view-all-button:hover {
+            background-color: #2a7f80;
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .table-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .table-header span:first-child {
+                padding-left: 0;
+            }
+            .table-header span {
+                display: block;
+                padding: 5px 0;
+            }
+            .table-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .table-row > div:first-child {
+                width: 50%;
+                max-width: 80px;
+                margin: 10px auto;
+            }
+            .table-row > div:nth-child(2) {
+                width: 80%;
+                margin: 10px auto;
+            }
+        }
+        /* End: Project Index Section Styles */
+
+        /* Start: Services Section Styles */
+        .services-section {
+            padding: 10px 5%;
+            text-align: center;
+            background-color: #f0f2f5;
+            margin-top: 0px;
+        }
+
+        .services-section text {
+            font-size: 0.9em;
+            line-height: 1.2;
+            color: #121010;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px; /* Space between text and button */
+            margin-left: 70px;
+        }
+
+        .services-section h2 {
+            margin: 0;
+            font-size: 1.6em; /* Adjusted font size for "LATEST PROJECT" */
+            color: #2a7f80;
+            text-align: left;
+        }
+
+        .services-section p {
+            margin: 5px 0 0;
+            font-size: 0.9em; /* Adjusted font size for description */
+            color: #2a7f80;
+            text-align: left;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 10%;
+        }
+
+        .service-item {
+            background-color: #2a7f80;
+            min-height: 180px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .service-item h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .service-item p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #f0f2f5;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* End: Services Section Styles */
+
+        /* Start: About Us Section Styles */
+        .about-us-section {
+            padding: 5px 5%;
+            background-color: #fff;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-us-content {
+            max-width: 1000px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .about-us-content h2 {
+            font-size: 1.6em;
+            color: #2a7f80;
+            margin-bottom: 0px;
+            font-weight: 600;
+        }
+
+        .about-us-content p {
+            font-size: 1em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .about-us-content p:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+        /* End: About Us Section Styles */
+
+        /* Start: Footer Call-to-Action Section Styles */
+       .footer-cta-section {
+            background-color: #d1eff0;
+            padding: 20px 5%;
+            width: 100%;
+            height: fit-content;
+            max-width: 1100px;
+            border-radius: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            box-sizing: border-box;
+            text-align: left;
+            margin: 20px auto 0 auto;
+            justify-content: center;
+}
+        .footer-column {
+            color: #333;
+            margin-left: 1px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2em;
+            color: #2a7f80;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .footer-column p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .footer-column p.small-text {
+            font-size: 0.85em;
+            line-height: 1.4;
+            color: #666;
+        }
+
+        .footer-column p.tiny-text {
+            font-size: 0.75em;
+            line-height: 1.3;
+            color: #888;
+            margin-top: 15px;
+        }
+
+        .footer-column input[type="email"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .footer-column button {
+            background-color: #2a7f80;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .footer-column button:hover {
+            background-color: #216a6b;
+        }
+
+        @media (max-width: 768px) {
+            .footer-cta-section {
+                grid-template-columns: 1fr;
+                padding: 30px 5%;
+            }
+
+            .footer-column {
+                margin-bottom: 30px;
+            }
+
+            .footer-column:last-child {
+                margin-bottom: 0;
+            }
+        }
+        /* End: Footer Call-to-Action Section Styles */
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <img src="logo/Logo.png" alt="The Tale Haus Logo">
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="header-center-info">
+            Based in Zanzibar, Tanzania.
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="SignUp.html" target="_blank" class="contact-button">Let's Connect</a>
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <nav class="navbar" id="navbar">
+        <ul>
+            <li><a href="sample.html">HAUS</a></li>
+            <li><a href="Works.html">WORKS</a></li>
+            <li><a href="Us.html">US</a></li>
+            <li><a href="Services.html">SERVICES</a></li>
+        </ul>
+    </nav>
+    <!--
+    <div class="main-content">
+        <section class="hero-section">
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1 class="hero-content h1" style="font-size: 40px;">INTEGRATED<br>MEDIA SOLUTIONS</h1>
+                    <p class="hero-content p">At The Tale Haus, We specialise in Live Streaming, Live Video Production, social media management, and content creation services. Our team is dedicated to helping our clients achieve their goals with top-notch quality and creativity.</p>
+                    <a href="SignUp.html" target="_blank" class="hero-button">Let's Connect</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div>
+        <section class="latest-project-section">
+                <div class="project-banner-text">
+                    <h2>LATEST PROJECT</h2>
+                    <p>Dive into the latest project from The Tale Haus™ team</p>
+                </div>
+            <div class="project-banner-container">
+                <div class="view-button-container">
+                    <a href="https://thetalehaus79.pixieset.com/heavyworship2025/" target="_blank" class="view-button">VIEW</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <section class="project-index-section">
+        <div class="project-index-text">
+            <h2>Project Index</h2>
+        <p>Some of our favorite projects that we've curated at The Tale Haus™</p>
+        </div>
+        -->
+        <div class="project-table">
+            <div class="table-header">
+                <span>ID</span>
+                <span>Project</span>
+            </div>
+            </div>
+
+        <section class="latest-project-section">
+            <div class="project-banner-container">
+                <div class="view-button-container">
+                    <a href="ViewProject.html" target="_blank" class="view-button">VIEW</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="latest-project-section">
+            <div class="project-banner-container">
+                <div class="view-button-container">
+                    <a href="ViewProject.html" target="_blank" class="view-button">VIEW</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="latest-project-section">
+            <div class="project-banner-container">
+                <div class="view-button-container">
+                    <a href="ViewProject.html" target="_blank" class="view-button">VIEW</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="latest-project-section">
+            <div class="project-banner-container">
+                <div class="view-button-container">
+                    <a href="ViewProject.html" target="_blank" class="view-button">VIEW</a>
+                </div>
+            </div>
+        </section>
+        <!--
+    </section>
+    <section class="services-section">
+        <div class="services-section text">
+            <h2>SERVICES</h2>
+            <p>Dive into the services offered by The Tale Haus™ team</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-item">
+                <h3>LIVE STREAMING</h3>
+                <p>Live Streaming.</p>
+            </div>
+            <div class="service-item">
+                <h3>VIDEO PRODUCTION</h3>
+                <p>Video Production.</p>
+            </div>
+            <div class="service-item">
+                <h3>SOCIAL MEDIA MANAGEMENT</h3>
+                <p>Social Media Management.</p>
+            </div>
+            <div class="service-item">
+                <h3>CONTENT CREATION</h3>
+                <p>Content Creation.</p>
+            </div>
+            <div class="service-item">
+                <h3>PHOTOGRAPHY</h3>
+                <p>Photography.</p>
+            </div>
+            <div class="service-item">
+                <h3>GRAPHICS DESIGN</h3>
+                <p>Graphic Design.</p>
+            </div>
+
+            <div class="service-item">
+                <h3>WEB DESIGNING</h3>
+                <p>web- design.</p>
+            </div>
+
+            <div class="service-item">
+                <h3>WEB DEVELOPMENT</h3>
+                <p>web- development.</p>
+            </div>
+        </div>
+    </section>
+    <section class="about-us-section">
+        <div class="about-us-content">
+            <h2>ABOUT US</h2>
+            <p>The Tale Haus™ is a bespoke creative-focused agency that lives, creates, and pushes boundaries at the intersection of content production and brand strategy. Our expertise lies in campaign and brand development, collaborating with clients in a variety of capacities relating to creative direction for commercial campaigns, photo & video, and overall brand or rebrand strategies. Whether up-and-coming or a household name, we work with our clients to get to the core of "what message they want to share", "why it matters" and how to translate and elevate these narratives through premium photo and video. It's about connection, and more importantly, connecting in a way that positively impacts and inspires.</p>
+            <p>At The Tale Haus™, all our projects and goals boil down to one thing.</p>
+        </div>
+    </section>
+    -->
+
+    <section>
+        <div class="footer-cta-section">
+            <div class="footer-column">
+                <h3>GET NOTIFIED</h3>
+                <p class="small-text">Be the first to know about workshops, events, project notes</p>
+                <input type="email" placeholder="Email Address">
+                <button>SUBSCRIBE</button>
+                <p class="tiny-text">Your information will not be used for notifications unrelated to The Tale Haus.</p>
+            </div>
+            <div class="footer-column">
+                <h3>FOLLOW THE TALE HAUS</h3>
+                <a href="https://www.instagram.com/worshipresourcestanzania/" class="view-button">Instagram</a>
+                <a href="https://www.youtube.com/@WorshipResourcesTanzania" class="view-button">Youtube</a>
+
+                <h3>FOLLOW THE TEAM</h3>
+                <a href="https://www.instagram.com/worshipresourcestanzania/" class="view-button">Instagram</a>
+                <a href="https://www.youtube.com/@WorshipResourcesTanzania" class="view-button">Youtube</a>
+            </div>
+            <div class="footer-column">
+                <h3>GET IN TOUCH</h3>
+                <p>inquires@thetale.haus</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger menu logic
+            const menuToggle = document.getElementById('menuToggle');
+            const navbar = document.getElementById('navbar');
+            
+            menuToggle.addEventListener('click', function() {
+                navbar.classList.toggle('open');
+                menuToggle.querySelector('i').classList.toggle('fa-bars');
+                menuToggle.querySelector('i').classList.toggle('fa-times');
+            });
+
+            // Close navbar when a link is clicked (optional, but good for UX)
+            const navLinks = document.querySelectorAll('.navbar ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navbar.classList.contains('open')) {
+                        navbar.classList.remove('open');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // === START: NEW CODE FOR STICKY NAVBAR ===
+            const header = document.querySelector('.header');
+            // The point where the navbar becomes sticky (header height + a little buffer)
+            const stickyPoint = header.offsetHeight + 20; 
+
+            window.addEventListener('scroll', function() {
+                // Only apply this logic on large screens (wider than 768px)
+                if (window.innerWidth > 768) {
+                    if (window.scrollY > stickyPoint) {
+                        navbar.classList.add('navbar-fixed');
+                    } else {
+                        navbar.classList.remove('navbar-fixed');
+                    }
+                }
+            });
+
+            // This helps reset the style if the window is resized to a smaller view
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    navbar.classList.remove('navbar-fixed');
+                }
+            });
+            // === END: NEW CODE FOR STICKY NAVBAR ===
+
+        });
+    </script>
+</body>
+</html>

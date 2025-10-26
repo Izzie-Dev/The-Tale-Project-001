@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Registration Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
+
+    #regForm {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 40px;
+      max-width: 700px;
+      min-width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input, select {
+      padding: 10px;
+      width: 100%;
+      font-size: 17px;
+      font-family: Arial;
+      border: 1px solid #aaaaaa;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    input.invalid {
+      background-color: #ffdddd;
+    }
+
+    .tab {
+      display: none;
+    }
+
+    .step {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbbbbb;
+      border: none;
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0.5;
+    }
+
+    .step.active {
+      opacity: 1;
+    }
+
+    .step.finish {
+      background-color: #04AA6D;
+    }
+
+    button {
+      background-color: #04AA6D;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 17px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 992px) {
+      #regForm {
+        width: 85%;
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #regForm {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #regForm {
+        width: 100%;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<form id="regForm">
+  <h1>Register:</h1>
+
+  <div class="tab">Name:
+    <p><input placeholder="First name..." id="firstName" oninput="this.className = ''"></p>
+    <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+  </div>
+
+  <div class="tab">Contact Info:
+    <p><input id="email" type="email" placeholder="E-mail..." oninput="this.className = ''"></p>
+    <p><input id="phone" type="tel" placeholder="Phone..." oninput="this.className = ''"></p>
+  </div>
+
+  <div class="tab">Do you have a website?
+    <p>
+      <select id="hasWebsite" onchange="toggleWebsiteInput(this.value)">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </p>
+    <p id="websiteInput" style="display: none;"><input placeholder="Your Website URL..." id="website"></p>
+  </div>
+
+  <div class="tab">Do you have social media links?
+    <p>
+      <select id="hasSocial" onchange="toggleSocialInput(this.value)">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </p>
+    <div id="socialInputs" style="display: none;">
+      <p><input placeholder="YouTube Link..." id="yt"></p>
+      <p><input placeholder="Instagram Link..." id="ig"></p>
+      <p><input placeholder="Twitter Link..." id="tw"></p>
+    </div>
+  </div>
+
+  <div class="tab" id="thankYouTab">
+    <h2 id="thankYouMessage">Thank you!</h2>
+    <p>Welcome to the Tar House</p>
+    <button type="button" onclick="window.location.href='https://www.youtube.com/@WorshipResourcesTanzania'">Please Follow Us</button>
+  </div>
+
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
+
+<script>
+  var currentTab = 0;
+  showTab(currentTab);
+
+  function showTab(n) {
+    const x = document.getElementsByClassName("tab");
+    x[n].style.display = "block";
+    document.getElementById("prevBtn").style.display = n === 0 ? "none" : "inline";
+    document.getElementById("nextBtn").style.display = n === x.length - 1 ? "none" : "inline";
+    fixStepIndicator(n);
+
+    if (n === x.length - 1) {
+      const name = document.getElementById('firstName').value;
+      document.getElementById('thankYouMessage').innerText = `Thank you, ${name}`;
+    }
+  }
+
+  function nextPrev(n) {
+    const x = document.getElementsByClassName("tab");
+    if (n === 1 && !validateForm()) return false;
+    x[currentTab].style.display = "none";
+    currentTab += n;
+    if (currentTab >= x.length) {
+      document.getElementById("regForm").submit();
+      return false;
+    }
+    showTab(currentTab);
+  }
+
+  function validateForm() {
+    let valid = true;
+    const x = document.getElementsByClassName("tab");
+    const y = x[currentTab].getElementsByTagName("input");
+
+    for (let i = 0; i < y.length; i++) {
+      if (y[i].offsetParent === null) continue; // skip hidden inputs
+      if (y[i].value.trim() === "") {
+        y[i].className += " invalid";
+        valid = false;
+      } else if (y[i].type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(y[i].value)) {
+        y[i].className += " invalid";
+        alert("Please enter a valid email address.");
+        return false;
+      } else if (y[i].type === "tel" && !/^\+?[0-9]{7,15}$/.test(y[i].value)) {
+        y[i].className += " invalid";
+        alert("Please enter a valid phone number.");
+        return false;
+      } else {
+        y[i].className = y[i].className.replace(" invalid", "");
+      }
+    }
+
+    if (valid) document.getElementsByClassName("step")[currentTab].className += " finish";
+    return valid;
+  }
+
+  function fixStepIndicator(n) {
+    const x = document.getElementsByClassName("step");
+    for (let i = 0; i < x.length; i++) {
+      x[i].className = x[i].className.replace(" active", "");
+    }
+    x[n].className += " active";
+  }
+
+  function toggleWebsiteInput(val) {
+    document.getElementById("websiteInput").style.display = val === "yes" ? "block" : "none";
+  }
+
+  function toggleSocialInput(val) {
+    document.getElementById("socialInputs").style.display = val === "yes" ? "block" : "none";
+  }
+</script>
+
+</body>
+</html>
