@@ -155,3 +155,61 @@
         font-size: 14px;
     }
 }
+
+/* REKEBISHO LA HARAKA KULINGANA NA PICHA */
+
+@media (max-width: 768px) {
+    /* 1. Rekebisha Logo na Maandishi ya Zanzibar */
+    .header {
+        padding: 20px 10px !important;
+    }
+    
+    .logo img {
+        margin-bottom: 15px !important;
+    }
+
+    .header-center-info {
+        margin-top: 10px;
+        line-height: 1.5;
+    }
+
+    /* 2. Rekebisha Hero Section Overlay */
+    .hero-section {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .hero-overlay {
+        padding: 60px 20px !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 3. Rekebisha Project Index (ID & Project) */
+    .project-index-text {
+        padding: 20px 5% !important;
+    }
+
+    .table-header {
+        display: flex;
+        justify-content: space-around; /* Inatenganisha ID na Project */
+        padding: 10px 5% !important;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-header span {
+        font-weight: bold;
+        color: #2a7f80;
+    }
+
+    /* 4. Rekebisha Miradi (Picha zienee vizuri) */
+    .project-banner-container, 
+    .project-banner-containerlatest {
+        width: 90% !important;
+        margin: 20px auto !important; /* Inaweka miradi katikati */
+        border-radius: 20px;
+        background-size: cover;
+        background-position: center;
+    }
+}
