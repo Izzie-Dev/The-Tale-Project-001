@@ -1,0 +1,144 @@
+
+    /* Start: General Body Styles */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        background-color: #f0f2f5;
+        color: #333;
+    }
+    /* End: General Body Styles */
+
+
+    .bar-title {
+    display: none;
+}
+    /* Start: Header Section Styles */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 10%;
+        background-color: #EAEAEA;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative; /* For menu icon positioning */
+        height: 90px;
+    }
+
+    .divider {
+        height: 40px; /* adjust as needed */
+        width: 1px;
+        background-color: black;
+        margin: 30px 30px;
+        padding: 0px;
+        margin-bottom: 50px;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo img { /* Styles for the logo image */
+        height: auto;
+        width: 170px;
+        display: block; /* Helps remove unwanted space below the image */
+        padding-left: 50px;
+        margin-bottom: 20px;
+    }
+    /* End: Header Section Styles */
+
+    /* Start: Header Center Info Styles */
+    .header-center-info {
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+    /* End: Header Center Info Styles */
+
+    /* Start: Contact Button Styles */
+    .contact-button {
+        background-color: #2a7f80;
+        color: #fff;
+        padding: 10px 10px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        margin-bottom: 20px;
+        margin-right: 50px;
+    }
+
+    .contact-button:hover {
+        background-color: #216a6b;
+    }
+    /* End: Contact Button Styles */
+
+
+    
+    /* Start: Hamburger Menu Icon Styles */
+    .menu-toggle {
+        display: none; /* Hidden by default (desktop) */
+        font-size: 28px;
+        color: #333;
+        cursor: pointer;
+        position: fixed; /* Position to the top right of the header */
+        right: 20%;
+        top: 98%;
+        transform: translateY(-50%);
+        z-index: 999; /* Ensure it's above the navbar toggle */
+    }
+    /* End: Hamburger Menu Icon Styles */
+
+    /* Start: Main Content Wrapper Styles */
+    .main-content {
+        padding: 0px 10%;
+    }
+    /* End: Main Content Wrapper Styles */
+
+    
+
+    /* Start: Navbar Styles */
+    .navbar {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0; /* Hapa ndipo itagandia - juu kabisa */
+        background-color: rgba(6, 124, 126, 0.7);
+        padding: 15px 0;
+        border-radius: 30px;
+        width: 90%;
+        max-width: 800px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        transition: background-color 0.4s ease-in-out;
+        margin: -24px 18%;
+    }
+
+    .navbar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navbar ul li {
+        margin: 0 20px;
+    }
+
+    .navbar ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 30px 30px;
+        transition: color 0.0s ease;
+        position: relative;
+    }
+
+    .navbar ul li a:hover {
+        color: #d1eff0;
+    }
+    /* End: Navbar Styles */
