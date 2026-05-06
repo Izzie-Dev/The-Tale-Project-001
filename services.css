@@ -1,0 +1,69 @@
+
+
+    /* Start: Services Section Styles */
+    .services-section {
+        padding: 10px 5%;
+        text-align: center;
+        background-color: #f0f2f5;
+        margin-top: 0px;
+    }
+
+    .services-section text {
+        font-size: 0.9em;
+        line-height: 1.2;
+        color: #121010;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        margin-bottom: 10px; /* Space between text and button */
+        margin-left: 70px;
+    }
+
+    .services-section h2 {
+        margin: 0;
+        font-size: 1.6em; /* Adjusted font size for "LATEST PROJECT" */
+        color: #2a7f80;
+        text-align: left;
+    }
+
+    .services-section p {
+        margin: 5px 0 0;
+        font-size: 0.9em; /* Adjusted font size for description */
+        color: #2a7f80;
+        text-align: left;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 10%;
+    }
+
+    .service-item {
+        background-color: #2a7f80;
+        min-height: 180px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #fff;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .service-item h3 {
+        font-size: 1.5em;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .service-item p {
+        font-size: 0.95em;
+        line-height: 1.6;
+        color: #f0f2f5;
+        margin-bottom: 0;
+    }
+    /* End: Services Section Styles */
